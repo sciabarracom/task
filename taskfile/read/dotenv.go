@@ -5,10 +5,10 @@ import (
 
 	"github.com/joho/godotenv"
 
-	"github.com/go-task/task/v3/internal/compiler"
-	"github.com/go-task/task/v3/internal/filepathext"
-	"github.com/go-task/task/v3/internal/templater"
-	"github.com/go-task/task/v3/taskfile"
+	"github.com/nuvolaris/task/v3/internal/compiler"
+	"github.com/nuvolaris/task/v3/internal/filepathext"
+	"github.com/nuvolaris/task/v3/internal/templater"
+	"github.com/nuvolaris/task/v3/taskfile"
 )
 
 func Dotenv(c compiler.Compiler, tf *taskfile.Taskfile, dir string) (*taskfile.Vars, error) {

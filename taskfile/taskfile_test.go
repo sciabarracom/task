@@ -8,7 +8,7 @@ import (
 	"gopkg.in/yaml.v3"
 
 	"github.com/go-task/task/v3/internal/orderedmap"
-	"github.com/go-task/task/v3/taskfile"
+	"github.com/nuvolaris/task/v3/taskfile"
 )
 
 func TestCmdParse(t *testing.T) {

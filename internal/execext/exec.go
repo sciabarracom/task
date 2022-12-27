@@ -10,10 +10,10 @@ import (
 	"strings"
 	"time"
 
-	"mvdan.cc/sh/v3/expand"
-	"mvdan.cc/sh/v3/interp"
-	"mvdan.cc/sh/v3/shell"
-	"mvdan.cc/sh/v3/syntax"
+	"github.com/nuvolaris/sh/v3/expand"
+	"github.com/nuvolaris/sh/v3/interp"
+	"github.com/nuvolaris/sh/v3/shell"
+	"github.com/nuvolaris/sh/v3/syntax"
 )
 
 // RunCommandOptions is the options for the RunCommand func
@@ -98,7 +98,7 @@ func IsExitError(err error) bool {
 	return false
 }
 
-// Expand is a helper to mvdan.cc/shell.Fields that returns the first field
+// Expand is a helper to github.com/nuvolaris/shell.Fields that returns the first field
 // if available.
 func Expand(s string) (string, error) {
 	s = filepath.ToSlash(s)

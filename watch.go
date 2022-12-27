@@ -14,8 +14,8 @@ import (
 
 	"github.com/go-task/task/v3/errors"
 	"github.com/go-task/task/v3/internal/fingerprint"
-	"github.com/go-task/task/v3/internal/logger"
-	"github.com/go-task/task/v3/taskfile"
+	"github.com/nuvolaris/task/v3/internal/logger"
+	"github.com/nuvolaris/task/v3/taskfile"
 )
 
 const defaultWatchInterval = 5 * time.Second

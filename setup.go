@@ -12,14 +12,16 @@ import (
 	"github.com/Masterminds/semver/v3"
 	"github.com/sajari/fuzzy"
 
-	compilerv2 "github.com/go-task/task/v3/internal/compiler/v2"
-	compilerv3 "github.com/go-task/task/v3/internal/compiler/v3"
-	"github.com/go-task/task/v3/internal/execext"
-	"github.com/go-task/task/v3/internal/filepathext"
-	"github.com/go-task/task/v3/internal/logger"
-	"github.com/go-task/task/v3/internal/output"
-	"github.com/go-task/task/v3/taskfile"
-	"github.com/go-task/task/v3/taskfile/read"
+	compilerv2 "github.com/nuvolaris/task/v3/internal/compiler/v2"
+	compilerv3 "github.com/nuvolaris/task/v3/internal/compiler/v3"
+	"github.com/nuvolaris/task/v3/internal/execext"
+	"github.com/nuvolaris/task/v3/internal/filepathext"
+	"github.com/nuvolaris/task/v3/internal/logger"
+	"github.com/nuvolaris/task/v3/internal/output"
+	"github.com/nuvolaris/task/v3/taskfile"
+	"github.com/nuvolaris/task/v3/taskfile/read"
+
+	"github.com/sajari/fuzzy"
 )
 
 func (e *Executor) Setup() error {

@@ -7,6 +7,11 @@ import (
 	"io"
 	"testing"
 
+	"github.com/nuvolaris/task/v3/internal/templater"
+	"github.com/nuvolaris/task/v3/taskfile"
+	"github.com/stretchr/testify/assert"
+
+	"github.com/nuvolaris/task/v3/internal/output"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
