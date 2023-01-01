@@ -44,62 +44,68 @@ tasks:
 Options:
 `
 
+var plagsInitialized = false
+
+var (
+	versionFlag bool
+	helpFlag    bool
+	ini         bool
+	list        bool
+	listAll     bool
+	status      bool
+	force       bool
+	watch       bool
+	verbose     bool
+	silent      bool
+	dry         bool
+	summary     bool
+	exitCode    bool
+	parallel    bool
+	concurrency int
+	dir         string
+	entrypoint  string
+	output      taskfile.Output
+	color       bool
+	interval    string
+)
+
 func Task(_args []string) {
 	os.Args = _args
 	log.SetFlags(0)
 	log.SetOutput(os.Stderr)
 
-	pflag.Usage = func() {
-		log.Print(usage)
-		pflag.PrintDefaults()
+	if !plagsInitialized {
+		pflag.Usage = func() {
+			log.Print(usage)
+			pflag.PrintDefaults()
+		}
+		plagsInitialized = true
+
+		pflag.BoolVar(&versionFlag, "version", false, "show Task version")
+		pflag.BoolVarP(&helpFlag, "help", "h", false, "shows Task usage")
+		pflag.BoolVarP(&ini, "init", "i", false, "creates a new Taskfile.yaml in the current folder")
+		pflag.BoolVarP(&list, "list", "l", false, "lists tasks with description of current Taskfile")
+		pflag.BoolVarP(&listAll, "list-all", "a", false, "lists tasks with or without a description")
+		pflag.BoolVar(&status, "status", false, "exits with non-zero exit code if any of the given tasks is not up-to-date")
+		pflag.BoolVarP(&force, "force", "f", false, "forces execution even when the task is up-to-date")
+		pflag.BoolVarP(&watch, "watch", "w", false, "enables watch of the given task")
+		pflag.BoolVarP(&verbose, "verbose", "v", false, "enables verbose mode")
+		pflag.BoolVarP(&silent, "silent", "s", false, "disables echoing")
+		pflag.BoolVarP(&parallel, "parallel", "p", false, "executes tasks provided on command line in parallel")
+		pflag.BoolVarP(&dry, "dry", "n", false, "compiles and prints tasks in the order that they would be run, without executing them")
+		pflag.BoolVar(&summary, "summary", false, "show summary about a task")
+		pflag.BoolVarP(&exitCode, "exit-code", "x", false, "pass-through the exit code of the task command")
+		pflag.StringVarP(&dir, "dir", "d", "", "sets directory of execution")
+		pflag.StringVarP(&entrypoint, "taskfile", "t", "", `choose which Taskfile to run. Defaults to "Taskfile.yml"`)
+		pflag.StringVarP(&output.Name, "output", "o", "", "sets output style: [interleaved|group|prefixed]")
+		pflag.StringVar(&output.Group.Begin, "output-group-begin", "", "message template to print before a task's grouped output")
+		pflag.StringVar(&output.Group.End, "output-group-end", "", "message template to print after a task's grouped output")
+		pflag.BoolVarP(&color, "color", "c", true, "colored output. Enabled by default. Set flag to false or use NO_COLOR=1 to disable")
+		pflag.IntVarP(&concurrency, "concurrency", "C", 0, "limit number tasks to run concurrently")
+		pflag.StringVarP(&interval, "interval", "I", "5s", "interval to watch for changes")
+		pflag.Parse()
+		plagsInitialized = true
 	}
-
-	var (
-		versionFlag bool
-		helpFlag    bool
-		init        bool
-		list        bool
-		listAll     bool
-		status      bool
-		force       bool
-		watch       bool
-		verbose     bool
-		silent      bool
-		dry         bool
-		summary     bool
-		exitCode    bool
-		parallel    bool
-		concurrency int
-		dir         string
-		entrypoint  string
-		output      taskfile.Output
-		color       bool
-		interval    string
-	)
-
-	pflag.BoolVar(&versionFlag, "version", false, "show Task version")
-	pflag.BoolVarP(&helpFlag, "help", "h", false, "shows Task usage")
-	pflag.BoolVarP(&init, "init", "i", false, "creates a new Taskfile.yaml in the current folder")
-	pflag.BoolVarP(&list, "list", "l", false, "lists tasks with description of current Taskfile")
-	pflag.BoolVarP(&listAll, "list-all", "a", false, "lists tasks with or without a description")
-	pflag.BoolVar(&status, "status", false, "exits with non-zero exit code if any of the given tasks is not up-to-date")
-	pflag.BoolVarP(&force, "force", "f", false, "forces execution even when the task is up-to-date")
-	pflag.BoolVarP(&watch, "watch", "w", false, "enables watch of the given task")
-	pflag.BoolVarP(&verbose, "verbose", "v", false, "enables verbose mode")
-	pflag.BoolVarP(&silent, "silent", "s", false, "disables echoing")
-	pflag.BoolVarP(&parallel, "parallel", "p", false, "executes tasks provided on command line in parallel")
-	pflag.BoolVarP(&dry, "dry", "n", false, "compiles and prints tasks in the order that they would be run, without executing them")
-	pflag.BoolVar(&summary, "summary", false, "show summary about a task")
-	pflag.BoolVarP(&exitCode, "exit-code", "x", false, "pass-through the exit code of the task command")
-	pflag.StringVarP(&dir, "dir", "d", "", "sets directory of execution")
-	pflag.StringVarP(&entrypoint, "taskfile", "t", "", `choose which Taskfile to run. Defaults to "Taskfile.yml"`)
-	pflag.StringVarP(&output.Name, "output", "o", "", "sets output style: [interleaved|group|prefixed]")
-	pflag.StringVar(&output.Group.Begin, "output-group-begin", "", "message template to print before a task's grouped output")
-	pflag.StringVar(&output.Group.End, "output-group-end", "", "message template to print after a task's grouped output")
-	pflag.BoolVarP(&color, "color", "c", true, "colored output. Enabled by default. Set flag to false or use NO_COLOR=1 to disable")
-	pflag.IntVarP(&concurrency, "concurrency", "C", 0, "limit number tasks to run concurrently")
-	pflag.StringVarP(&interval, "interval", "I", "5s", "interval to watch for changes")
-	pflag.Parse()
 
 	if versionFlag {
 		fmt.Printf("Task version: %s\n", getVersion())
@@ -111,7 +117,7 @@ func Task(_args []string) {
 		return
 	}
 
-	if init {
+	if ini {
 		wd, err := os.Getwd()
 		if err != nil {
 			log.Fatal(err)
