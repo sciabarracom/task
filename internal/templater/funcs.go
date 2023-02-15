@@ -7,7 +7,7 @@ import (
 	"text/template"
 
 	sprig "github.com/go-task/slim-sprig"
-	"mvdan.cc/sh/v3/syntax"
+	"github.com/nuvolaris/sh/v3/syntax"
 )
 
 var (

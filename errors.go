@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"mvdan.cc/sh/v3/interp"
+	"github.com/nuvolaris/sh/v3/interp"
 )
 
 var (

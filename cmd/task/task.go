@@ -10,7 +10,7 @@ import (
 	"strings"
 
 	"github.com/spf13/pflag"
-	"mvdan.cc/sh/v3/syntax"
+	"github.com/nuvolaris/sh/v3/syntax"
 
 	"github.com/go-task/task/v3"
 	"github.com/go-task/task/v3/args"
