@@ -1,8 +1,9 @@
-module github.com/go-task/task/v3
+module github.com/nuvolaris/task/v3
 
 require (
 	github.com/fatih/color v1.13.0
 	github.com/go-task/slim-sprig v0.0.0-20210107165309-348f09dbbbc0
+	github.com/go-task/task/v3 v3.19.0
 	github.com/joho/godotenv v1.4.0
 	github.com/mattn/go-zglob v0.0.4
 	github.com/mitchellh/hashstructure/v2 v2.0.2
@@ -50,6 +51,7 @@ require (
 	golang.org/x/sys v0.3.0 // indirect
 	golang.org/x/term v0.3.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
+	mvdan.cc/sh/v3 v3.6.0 // indirect
 )
 
 go 1.18
