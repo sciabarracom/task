@@ -9,7 +9,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/go-task/task/v3/internal/filepathext"
+	"github.com/nuvolaris/task/v3/internal/filepathext"
 )
 
 // Checksum validades if a task is up to date by calculating its source

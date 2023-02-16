@@ -9,7 +9,7 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/go-task/task/v3/internal/logger"
+	"github.com/nuvolaris/task/v3/internal/logger"
 )
 
 // ListTasks prints a list of tasks.

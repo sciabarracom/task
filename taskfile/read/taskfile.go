@@ -9,10 +9,10 @@ import (
 
 	"gopkg.in/yaml.v3"
 
-	"github.com/go-task/task/v3/internal/filepathext"
-	"github.com/go-task/task/v3/internal/sysinfo"
-	"github.com/go-task/task/v3/internal/templater"
-	"github.com/go-task/task/v3/taskfile"
+	"github.com/nuvolaris/task/v3/internal/filepathext"
+	"github.com/nuvolaris/task/v3/internal/sysinfo"
+	"github.com/nuvolaris/task/v3/internal/templater"
+	"github.com/nuvolaris/task/v3/taskfile"
 )
 
 var (

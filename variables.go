@@ -6,11 +6,11 @@ import (
 
 	"github.com/joho/godotenv"
 
-	"github.com/go-task/task/v3/internal/execext"
-	"github.com/go-task/task/v3/internal/filepathext"
-	"github.com/go-task/task/v3/internal/status"
-	"github.com/go-task/task/v3/internal/templater"
-	"github.com/go-task/task/v3/taskfile"
+	"github.com/nuvolaris/task/v3/internal/execext"
+	"github.com/nuvolaris/task/v3/internal/filepathext"
+	"github.com/nuvolaris/task/v3/internal/status"
+	"github.com/nuvolaris/task/v3/internal/templater"
+	"github.com/nuvolaris/task/v3/taskfile"
 )
 
 // CompiledTask returns a copy of a task, but replacing variables in almost all

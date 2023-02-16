@@ -12,10 +12,10 @@ import (
 	"github.com/spf13/pflag"
 	"github.com/nuvolaris/sh/v3/syntax"
 
-	"github.com/go-task/task/v3"
-	"github.com/go-task/task/v3/args"
-	"github.com/go-task/task/v3/internal/logger"
-	"github.com/go-task/task/v3/taskfile"
+	"github.com/nuvolaris/task/v3"
+	"github.com/nuvolaris/task/v3/args"
+	"github.com/nuvolaris/task/v3/internal/logger"
+	"github.com/nuvolaris/task/v3/taskfile"
 )
 
 var (

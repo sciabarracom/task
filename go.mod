@@ -1,10 +1,11 @@
 module github.com/nuvolaris/task/v3
 
+go 1.19
+
 require (
-	github.com/fatih/color v1.13.0
-	github.com/go-task/slim-sprig v0.0.0-20210107165309-348f09dbbbc0
-	github.com/go-task/task/v3 v3.19.0
-	github.com/joho/godotenv v1.4.0
+	github.com/fatih/color v1.14.1
+	github.com/go-task/slim-sprig v2.20.0+incompatible
+	github.com/joho/godotenv v1.5.1
 	github.com/mattn/go-zglob v0.0.4
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/nuvolaris/sh/v3 v3.0.0-20230215223444-9d9572a58b84
@@ -12,13 +13,15 @@ require (
 	github.com/sajari/fuzzy v1.0.0
 	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.8.1
-	golang.org/x/exp v0.0.0-20220930202632-ec3f01382ef9
+	golang.org/x/exp v0.0.0-20230213192124-5e25df0256eb
 	golang.org/x/sync v0.1.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
 	code.cloudfoundry.org/bytefmt v0.0.0-20200131002437-cf55d5288a48 // indirect
+	github.com/Masterminds/goutils v1.1.1 // indirect
+	github.com/Masterminds/semver v1.5.0 // indirect
 	github.com/VividCortex/ewma v1.1.1 // indirect
 	github.com/acarl005/stripansi v0.0.0-20180116102854-5a71ef0e047d // indirect
 	github.com/apache/openwhisk-client-go v0.0.0-20221221220036-71124f15c938 // indirect
@@ -27,12 +30,15 @@ require (
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/ghodss/yaml v1.0.1-0.20190212211648-25d852aebe32 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
+	github.com/google/uuid v1.3.0 // indirect
 	github.com/hokaccha/go-prettyjson v0.0.0-20210113012101-fb4e108d2519 // indirect
+	github.com/huandu/xstrings v1.4.0 // indirect
+	github.com/imdario/mergo v0.3.13 // indirect
 	github.com/inconshreveable/mousetrap v1.0.1 // indirect
 	github.com/laher/uggo v0.0.0-20140418102112-0ad25fe11c5b // indirect
 	github.com/logrusorgru/aurora v0.0.0-20200102142835-e9ef32dff381 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
-	github.com/mattn/go-isatty v0.0.16 // indirect
+	github.com/mattn/go-isatty v0.0.17 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/mtibben/androiddnsfix v0.0.0-20200907095054-ff0280446354 // indirect
 	github.com/nicksnyder/go-i18n v1.10.1 // indirect
@@ -51,7 +57,4 @@ require (
 	golang.org/x/sys v0.3.0 // indirect
 	golang.org/x/term v0.3.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	mvdan.cc/sh/v3 v3.6.0 // indirect
 )
-
-go 1.18
