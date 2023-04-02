@@ -2,6 +2,7 @@ package taskmain
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -9,8 +10,8 @@ import (
 	"runtime/debug"
 	"strings"
 
-	"github.com/spf13/pflag"
 	"github.com/nuvolaris/sh/v3/syntax"
+	"github.com/spf13/pflag"
 
 	"github.com/nuvolaris/task/v3"
 	"github.com/nuvolaris/task/v3/args"
@@ -69,7 +70,7 @@ var (
 	interval    string
 )
 
-func Task(_args []string) {
+func Task(_args []string) (int, error) {
 	os.Args = _args
 	log.SetFlags(0)
 	log.SetOutput(os.Stderr)
@@ -109,28 +110,27 @@ func Task(_args []string) {
 
 	if versionFlag {
 		fmt.Printf("Task version: %s\n", getVersion())
-		return
+		return 0, nil
 	}
 
 	if helpFlag {
 		pflag.Usage()
-		return
+		return 0, nil
 	}
 
 	if ini {
 		wd, err := os.Getwd()
 		if err != nil {
-			log.Fatal(err)
+			return 1, err
 		}
 		if err := task.InitTaskfile(os.Stdout, wd); err != nil {
-			log.Fatal(err)
+			return 1, err
 		}
-		return
+		return 0, nil
 	}
 
 	if dir != "" && entrypoint != "" {
-		log.Fatal("task: You can't set both --dir and --taskfile")
-		return
+		return 1, errors.New("task: You can't set both --dir and --taskfile")
 	}
 	if entrypoint != "" {
 		dir = filepath.Dir(entrypoint)
@@ -139,12 +139,10 @@ func Task(_args []string) {
 
 	if output.Name != "group" {
 		if output.Group.Begin != "" {
-			log.Fatal("task: You can't set --output-group-begin without --output=group")
-			return
+			return 1, errors.New("task: You can't set --output-group-begin without --output=group")
 		}
 		if output.Group.End != "" {
-			log.Fatal("task: You can't set --output-group-end without --output=group")
-			return
+			return 1, errors.New("task: You can't set --output-group-end without --output=group")
 		}
 	}
 
@@ -171,7 +169,7 @@ func Task(_args []string) {
 
 	if (list || listAll) && silent {
 		e.ListTaskNames(listAll)
-		return
+		return 0, nil
 	}
 
 	if err := e.Setup(); err != nil {
@@ -179,8 +177,7 @@ func Task(_args []string) {
 	}
 	v, err := e.Taskfile.ParsedVersion()
 	if err != nil {
-		log.Fatal(err)
-		return
+		return 1, err
 	}
 
 	if list {
@@ -188,7 +185,7 @@ func Task(_args []string) {
 			//e.Logger.Outf(Yellow, "task: No tasks with description available. Try --list-all to list all tasks")
 			fmt.Printf("task: No tasks with description available. Try --list-all to list all tasks")
 		}
-		return
+		return 0, nil
 	}
 
 	if listAll {
@@ -196,7 +193,7 @@ func Task(_args []string) {
 			//e.Logger.Outf(Yellow, "task: No tasks available")
 			fmt.Printf("task: No tasks available")
 		}
-		return
+		return 0, nil
 	}
 
 	var (
@@ -206,7 +203,7 @@ func Task(_args []string) {
 
 	tasksAndVars, cliArgs, err := getArgs()
 	if err != nil {
-		log.Fatal(err)
+		return 1, err
 	}
 
 	if v >= 3.0 {
@@ -226,22 +223,21 @@ func Task(_args []string) {
 
 	if status {
 		if err := e.Status(ctx, calls...); err != nil {
-			log.Fatal(err)
+			return 1, err
 		}
-		return
+		return 0, nil
 	}
 
 	if err := e.Run(ctx, calls...); err != nil {
-		//e.Logger.Errf(Red, "%v", err)
-		fmt.Errorf("%v", err)
-
 		if exitCode {
 			if err, ok := err.(*task.TaskRunError); ok {
-				os.Exit(err.ExitCode())
+				return err.ExitCode(), nil
 			}
 		}
-		os.Exit(1)
+		return 1, err
 	}
+
+	return 0, nil
 }
 
 func getArgs() ([]string, string, error) {
