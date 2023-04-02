@@ -74,6 +74,9 @@ func Task(_args []string) (int, error) {
 	os.Args = _args
 	log.SetFlags(0)
 	log.SetOutput(os.Stderr)
+	defer func() {
+		plagsInitialized = false
+	}()
 
 	if !plagsInitialized {
 		pflag.Usage = func() {
