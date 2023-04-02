@@ -173,7 +173,7 @@ func Task(_args []string) (int, error) {
 	}
 
 	if err := e.Setup(); err != nil {
-		log.Fatal(err)
+		return 1, err
 	}
 	v, err := e.Taskfile.ParsedVersion()
 	if err != nil {
