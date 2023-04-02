@@ -74,9 +74,6 @@ func Task(_args []string) (int, error) {
 	os.Args = _args
 	log.SetFlags(0)
 	log.SetOutput(os.Stderr)
-	// defer func() {
-	// 	plagsInitialized = false
-	// }()
 
 	if !plagsInitialized {
 		pflag.Usage = func() {
@@ -132,7 +129,6 @@ func Task(_args []string) (int, error) {
 		return 0, nil
 	}
 
-	log.Println("Dir and Entrypoint", dir, entrypoint)
 	if dir != "" && entrypoint != "" {
 		return 1, errors.New("task: You can't set both --dir and --taskfile")
 	}
@@ -235,7 +231,7 @@ func Task(_args []string) (int, error) {
 	if err := e.Run(ctx, calls...); err != nil {
 		if exitCode {
 			if err, ok := err.(*task.TaskRunError); ok {
-				return err.ExitCode(), nil
+				return err.ExitCode(), err
 			}
 		}
 		return 1, err
