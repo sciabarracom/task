@@ -8,7 +8,7 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/mattn/go-zglob v0.0.4
 	github.com/mitchellh/hashstructure/v2 v2.0.2
-	github.com/nuvolaris/sh/v3 v3.0.0-20230427174537-c9fdb8d0e5c7
+	github.com/nuvolaris/sh/v3 v3.0.0-20230427192741-eeb0121e1ff7
 	github.com/radovskyb/watcher v1.0.7
 	github.com/sajari/fuzzy v1.0.0
 	github.com/spf13/pflag v1.0.5
@@ -43,7 +43,7 @@ require (
 	github.com/mtibben/androiddnsfix v0.0.0-20200907095054-ff0280446354 // indirect
 	github.com/nicksnyder/go-i18n v1.10.1 // indirect
 	github.com/nojima/httpie-go v0.7.0 // indirect
-	github.com/nuvolaris/nuv v0.0.0-20230427172418-fef998257595 // indirect
+	github.com/nuvolaris/nuv v0.0.0-20230427175103-4f5b817a3a40 // indirect
 	github.com/nuvolaris/openwhisk-cli/commands v0.0.0-20221227222349-fba31e174b7e // indirect
 	github.com/nuvolaris/openwhisk-cli/wski18n v0.0.0-20221227222349-fba31e174b7e // indirect
 	github.com/nuvolaris/someutils v0.0.0-20230406090008-39e94b70e1ae // indirect
