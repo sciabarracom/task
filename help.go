@@ -94,7 +94,7 @@ func (e *Executor) ListTasks(o ListOptions) (bool, error) {
 		}
 		return false, nil
 	}
-	e.Logger.Outf(logger.Default, "task: Available tasks for this project:\n")
+	e.Logger.Outf(logger.Default, "nuv: available subcommands:")
 
 	// Format in tab-separated columns with a tab stop of 8.
 	w := tabwriter.NewWriter(e.Stdout, 0, 8, 6, ' ', 0)
