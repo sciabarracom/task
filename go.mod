@@ -8,7 +8,7 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/mattn/go-zglob v0.0.4
 	github.com/mitchellh/hashstructure/v2 v2.0.2
-	github.com/nuvolaris/sh/v3 v3.0.0-20230427192741-eeb0121e1ff7
+	github.com/nuvolaris/sh/v3 v3.0.0-20230506145920-eb793bb1aedd
 	github.com/radovskyb/watcher v1.0.7
 	github.com/sajari/fuzzy v1.0.0
 	github.com/spf13/pflag v1.0.5
