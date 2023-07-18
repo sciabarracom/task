@@ -8,7 +8,7 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/mattn/go-zglob v0.0.4
 	github.com/mitchellh/hashstructure/v2 v2.0.2
-	github.com/nuvolaris/sh/v3 v3.0.0-20230506145920-eb793bb1aedd
+	github.com/nuvolaris/sh/v3 v3.0.0-20230718131820-376e733299a4
 	github.com/radovskyb/watcher v1.0.7
 	github.com/sajari/fuzzy v1.0.0
 	github.com/spf13/pflag v1.0.5
@@ -68,14 +68,14 @@ require (
 	github.com/mtibben/androiddnsfix v0.0.0-20200907095054-ff0280446354 // indirect
 	github.com/nicksnyder/go-i18n v1.10.1 // indirect
 	github.com/nojima/httpie-go v0.7.0 // indirect
-	github.com/nuvolaris/envsubst/cmd/envsubstmain v0.0.0-20230316170831-d78a244e9675 // indirect
+	github.com/nuvolaris/envsubst/cmd/envsubstmain v0.0.0-20230603163828-10ca029cdb58 // indirect
 	github.com/nuvolaris/goawk v1.21.1-0.20230314201833-d0931fd55c2c // indirect
-	github.com/nuvolaris/goja/gojamain v0.0.0-20230504161530-a973bab4a652 // indirect
-	github.com/nuvolaris/nuv v0.0.0-20230505222055-3c2217d18e25 // indirect
-	github.com/nuvolaris/openwhisk-cli/commands v0.0.0-20221227222349-fba31e174b7e // indirect
+	github.com/nuvolaris/goja/gojamain v0.0.0-20230527135333-d302d90d3283 // indirect
+	github.com/nuvolaris/nuv v0.0.0-20230718103746-3f654e203240 // indirect
+	github.com/nuvolaris/openwhisk-cli/commands v0.0.0-20230615104118-d593f7d6576f // indirect
 	github.com/nuvolaris/openwhisk-cli/wski18n v0.0.0-20221227222349-fba31e174b7e // indirect
 	github.com/nuvolaris/someutils v0.0.0-20230406090008-39e94b70e1ae // indirect
-	github.com/nuvolaris/task/cmd/taskmain/v3 v3.0.0-20230402183349-40db8d138726 // indirect
+	github.com/nuvolaris/task/cmd/taskmain/v3 v3.0.0-20230622105149-f79e6416ff6e // indirect
 	github.com/pborman/getopt v0.0.0-20190409184431-ee0cd42419d3 // indirect
 	github.com/pelletier/go-toml v1.8.1 // indirect
 	github.com/pjbgf/sha1cd v0.2.3 // indirect
@@ -89,11 +89,11 @@ require (
 	github.com/vbauerster/mpb/v5 v5.0.2 // indirect
 	github.com/xanzy/ssh-agent v0.3.3 // indirect
 	github.com/zalando/go-keyring v0.2.2 // indirect
-	golang.org/x/crypto v0.3.0 // indirect
-	golang.org/x/net v0.4.0 // indirect
+	golang.org/x/crypto v0.6.0 // indirect
+	golang.org/x/net v0.6.0 // indirect
 	golang.org/x/sys v0.5.0 // indirect
-	golang.org/x/term v0.3.0 // indirect
-	golang.org/x/text v0.5.0 // indirect
+	golang.org/x/term v0.5.0 // indirect
+	golang.org/x/text v0.7.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
