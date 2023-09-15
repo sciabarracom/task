@@ -9,7 +9,7 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/mattn/go-zglob v0.0.4
 	github.com/mitchellh/hashstructure/v2 v2.0.2
-	github.com/nuvolaris/sh/v3 v3.7.1-nuv.2309151537
+	github.com/nuvolaris/sh/v3 v3.7.1-nuv.2309151614
 	github.com/radovskyb/watcher v1.0.7
 	github.com/sajari/fuzzy v1.0.0
 	github.com/spf13/pflag v1.0.5
@@ -60,12 +60,12 @@ require (
 	github.com/nuvolaris/goja v0.0.0-20230826141320-81daf86ddcc2 // indirect
 	github.com/nuvolaris/goja/gojamain v0.0.0-20230826141320-81daf86ddcc2 // indirect
 	github.com/nuvolaris/goja_nodejs v0.0.0-20230908085513-c4634a0b1160 // indirect
-	github.com/nuvolaris/nuv v0.0.0-20230914171810-b648e2664ce9 // indirect
+	github.com/nuvolaris/nuv v0.0.0-20230915151409-9e76cabec87c // indirect
 	github.com/nuvolaris/openwhisk-cli/commands v0.0.0-20230914211457-35b540a1ded7 // indirect
 	github.com/nuvolaris/openwhisk-cli/wski18n v0.0.0-20230914211457-35b540a1ded7 // indirect
-	github.com/nuvolaris/openwhisk-wskdeploy v0.0.0-20230914211027-67b4275c3f51 // indirect
+	github.com/nuvolaris/openwhisk-wskdeploy v0.0.0-20230915131310-1e795a4247d3 // indirect
 	github.com/nuvolaris/someutils v0.0.0-20230406090008-39e94b70e1ae // indirect
-	github.com/onsi/gomega v1.27.4 // indirect
+	github.com/onsi/gomega v1.27.10 // indirect
 	github.com/pelletier/go-toml v1.9.5 // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/remeh/sizedwaitgroup v1.0.0 // indirect
