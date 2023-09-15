@@ -12,13 +12,13 @@ import (
 	"github.com/nuvolaris/sh/v3/syntax"
 	"github.com/spf13/pflag"
 
-	"github.com/go-task/task/v3/errors"
-	"github.com/go-task/task/v3/internal/experiments"
-	"github.com/go-task/task/v3/internal/sort"
-	ver "github.com/go-task/task/v3/internal/version"
 	"github.com/nuvolaris/task/v3"
 	"github.com/nuvolaris/task/v3/args"
+	"github.com/nuvolaris/task/v3/errors"
+	"github.com/nuvolaris/task/v3/internal/experiments"
 	"github.com/nuvolaris/task/v3/internal/logger"
+	"github.com/nuvolaris/task/v3/internal/sort"
+	ver "github.com/nuvolaris/task/v3/internal/version"
 	"github.com/nuvolaris/task/v3/taskfile"
 )
 

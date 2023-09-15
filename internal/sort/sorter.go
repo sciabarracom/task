@@ -4,7 +4,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/go-task/task/v3/taskfile"
+	"github.com/nuvolaris/task/v3/taskfile"
 )
 
 type TaskSorter interface {

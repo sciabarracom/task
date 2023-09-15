@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/go-task/task/v3/errors"
+	"github.com/nuvolaris/task/v3/errors"
 )
 
 // An HTTPNode is a node that reads a Taskfile from a remote location via HTTP.

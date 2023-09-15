@@ -12,8 +12,8 @@ import (
 
 	"github.com/radovskyb/watcher"
 
-	"github.com/go-task/task/v3/errors"
-	"github.com/go-task/task/v3/internal/fingerprint"
+	"github.com/nuvolaris/task/v3/errors"
+	"github.com/nuvolaris/task/v3/internal/fingerprint"
 	"github.com/nuvolaris/task/v3/internal/logger"
 	"github.com/nuvolaris/task/v3/taskfile"
 )

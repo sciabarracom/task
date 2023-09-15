@@ -20,8 +20,6 @@ import (
 	"github.com/nuvolaris/task/v3/internal/output"
 	"github.com/nuvolaris/task/v3/taskfile"
 	"github.com/nuvolaris/task/v3/taskfile/read"
-
-	"github.com/sajari/fuzzy"
 )
 
 func (e *Executor) Setup() error {

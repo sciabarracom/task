@@ -7,8 +7,8 @@ import (
 	"text/template"
 
 	sprig "github.com/go-task/slim-sprig"
+	"github.com/nuvolaris/sh/v3/shell"
 	"github.com/nuvolaris/sh/v3/syntax"
-	"mvdan.cc/sh/v3/shell"
 )
 
 var templateFuncs template.FuncMap

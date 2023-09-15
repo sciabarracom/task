@@ -5,7 +5,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/go-task/task/v3/errors"
+	"github.com/nuvolaris/task/v3/errors"
 	"github.com/nuvolaris/task/v3/internal/filepathext"
 )
 
