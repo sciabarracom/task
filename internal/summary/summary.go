@@ -57,7 +57,7 @@ func printTaskSummary(l *logger.Logger, t *ast.Task) {
 }
 
 func printTaskName(l *logger.Logger, t *ast.Task) {
-	l.Outf(logger.Default, "task: ")
+	l.Outf(logger.Default, "ops: ")
 	l.Outf(logger.Green, "%s\n", t.Name())
 	l.Outf(logger.Default, "\n")
 }

@@ -27,7 +27,7 @@ func (e *Executor) watchTasks(calls ...*ast.Call) error {
 		tasks[i] = c.Task
 	}
 
-	e.Logger.Errf(logger.Green, "task: Started watching for tasks: %s\n", strings.Join(tasks, ", "))
+	e.Logger.Errf(logger.Green, "ops: Started watching for tasks: %s\n", strings.Join(tasks, ", "))
 
 	ctx, cancel := context.WithCancel(context.Background())
 	for _, c := range calls {
@@ -49,7 +49,7 @@ func (e *Executor) watchTasks(calls ...*ast.Call) error {
 		watchInterval = defaultWatchInterval
 	}
 
-	e.Logger.VerboseOutf(logger.Green, "task: Watching for changes every %v\n", watchInterval)
+	e.Logger.VerboseOutf(logger.Green, "ops: Watching for changes every %v\n", watchInterval)
 
 	w := watcher.New()
 	defer w.Close()
@@ -61,7 +61,7 @@ func (e *Executor) watchTasks(calls ...*ast.Call) error {
 		for {
 			select {
 			case event := <-w.Event:
-				e.Logger.VerboseErrf(logger.Magenta, "task: received watch event: %v\n", event)
+				e.Logger.VerboseErrf(logger.Magenta, "ops: received watch event: %v\n", event)
 
 				cancel()
 				ctx, cancel = context.WithCancel(context.Background())
@@ -150,7 +150,7 @@ func (e *Executor) registerWatchedFiles(w *watcher.Watcher, calls ...*ast.Call) 
 		for _, s := range globs {
 			files, err := fingerprint.Glob(task.Dir, s)
 			if err != nil {
-				return fmt.Errorf("task: %s: %w", s, err)
+				return fmt.Errorf("ops: %s: %w", s, err)
 			}
 			for _, f := range files {
 				absFile, err := filepath.Abs(f)
@@ -166,7 +166,7 @@ func (e *Executor) registerWatchedFiles(w *watcher.Watcher, calls ...*ast.Call) 
 				if err := w.Add(absFile); err != nil {
 					return err
 				}
-				e.Logger.VerboseOutf(logger.Green, "task: watching new file: %v\n", absFile)
+				e.Logger.VerboseOutf(logger.Green, "ops: watching new file: %v\n", absFile)
 			}
 		}
 		return nil

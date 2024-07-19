@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"mvdan.cc/sh/v3/interp"
+	"github.com/sciabarracom/sh/v3/interp"
 )
 
 // TaskNotFoundError is returned when the specified task is not found in the
@@ -17,13 +17,13 @@ type TaskNotFoundError struct {
 func (err *TaskNotFoundError) Error() string {
 	if err.DidYouMean != "" {
 		return fmt.Sprintf(
-			`task: Task %q does not exist. Did you mean %q?`,
+			`ops: Task %q does not exist. Did you mean %q?`,
 			err.TaskName,
 			err.DidYouMean,
 		)
 	}
 
-	return fmt.Sprintf(`task: Task %q does not exist`, err.TaskName)
+	return fmt.Sprintf(`ops: Task %q does not exist`, err.TaskName)
 }
 
 func (err *TaskNotFoundError) Code() int {
@@ -38,7 +38,7 @@ type TaskRunError struct {
 }
 
 func (err *TaskRunError) Error() string {
-	return fmt.Sprintf(`task: Failed to run task %q: %v`, err.TaskName, err.Err)
+	return fmt.Sprintf(`ops: Failed to run task %q: %v`, err.TaskName, err.Err)
 }
 
 func (err *TaskRunError) Code() int {
@@ -58,7 +58,7 @@ type TaskInternalError struct {
 }
 
 func (err *TaskInternalError) Error() string {
-	return fmt.Sprintf(`task: Task "%s" is internal`, err.TaskName)
+	return fmt.Sprintf(`ops: Task "%s" is internal`, err.TaskName)
 }
 
 func (err *TaskInternalError) Code() int {
@@ -73,7 +73,7 @@ type TaskNameConflictError struct {
 }
 
 func (err *TaskNameConflictError) Error() string {
-	return fmt.Sprintf(`task: Found multiple tasks (%s) that match %q`, strings.Join(err.TaskNames, ", "), err.Call)
+	return fmt.Sprintf(`ops: Found multiple tasks (%s) that match %q`, strings.Join(err.TaskNames, ", "), err.Call)
 }
 
 func (err *TaskNameConflictError) Code() int {
@@ -89,7 +89,7 @@ type TaskCalledTooManyTimesError struct {
 
 func (err *TaskCalledTooManyTimesError) Error() string {
 	return fmt.Sprintf(
-		`task: Maximum task call exceeded (%d) for task %q: probably an cyclic dep or infinite loop`,
+		`ops: Maximum task call exceeded (%d) for task %q: probably an cyclic dep or infinite loop`,
 		err.MaximumTaskCall,
 		err.TaskName,
 	)
@@ -105,7 +105,7 @@ type TaskCancelledByUserError struct {
 }
 
 func (err *TaskCancelledByUserError) Error() string {
-	return fmt.Sprintf(`task: Task %q cancelled by user`, err.TaskName)
+	return fmt.Sprintf(`ops: Task %q cancelled by user`, err.TaskName)
 }
 
 func (err *TaskCancelledByUserError) Code() int {
@@ -119,7 +119,7 @@ type TaskCancelledNoTerminalError struct {
 
 func (err *TaskCancelledNoTerminalError) Error() string {
 	return fmt.Sprintf(
-		`task: Task %q cancelled because it has a prompt and the environment is not a terminal. Use --yes (-y) to run anyway.`,
+		`ops: Task %q cancelled because it has a prompt and the environment is not a terminal. Use --yes (-y) to run anyway.`,
 		err.TaskName,
 	)
 }
@@ -136,7 +136,7 @@ type TaskMissingRequiredVars struct {
 
 func (err *TaskMissingRequiredVars) Error() string {
 	return fmt.Sprintf(
-		`task: Task %q cancelled because it is missing required variables: %s`,
+		`ops: Task %q cancelled because it is missing required variables: %s`,
 		err.TaskName,
 		strings.Join(err.MissingVars, ", "),
 	)

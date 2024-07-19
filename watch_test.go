@@ -23,10 +23,10 @@ import (
 func TestFileWatcherInterval(t *testing.T) {
 	const dir = "testdata/watcher_interval"
 	expectedOutput := strings.TrimSpace(`
-task: Started watching for tasks: default
-task: [default] echo "Hello, World!"
+ops: Started watching for tasks: default
+ops: [default] echo "Hello, World!"
 Hello, World!
-task: [default] echo "Hello, World!"
+ops: [default] echo "Hello, World!"
 Hello, World!
 	`)
 

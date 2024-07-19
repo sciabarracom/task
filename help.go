@@ -44,13 +44,13 @@ func (o ListOptions) ShouldListTasks() bool {
 // Validate validates that the collection of list-related options are in a valid configuration
 func (o ListOptions) Validate() error {
 	if o.ListOnlyTasksWithDescriptions && o.ListAllTasks {
-		return fmt.Errorf("task: cannot use --list and --list-all at the same time")
+		return fmt.Errorf("ops: cannot use --list and --list-all at the same time")
 	}
 	if o.FormatTaskListAsJSON && !o.ShouldListTasks() {
-		return fmt.Errorf("task: --json only applies to --list or --list-all")
+		return fmt.Errorf("ops: --json only applies to --list or --list-all")
 	}
 	if o.NoStatus && !o.FormatTaskListAsJSON {
-		return fmt.Errorf("task: --no-status only applies to --json with --list or --list-all")
+		return fmt.Errorf("ops: --no-status only applies to --json with --list or --list-all")
 	}
 	return nil
 }
@@ -92,13 +92,13 @@ func (e *Executor) ListTasks(o ListOptions) (bool, error) {
 	}
 	if len(tasks) == 0 {
 		if o.ListOnlyTasksWithDescriptions {
-			e.Logger.Outf(logger.Yellow, "task: No tasks with description available. Try --list-all to list all tasks\n")
+			e.Logger.Outf(logger.Yellow, "ops: No tasks with description available. Try --list-all to list all tasks\n")
 		} else if o.ListAllTasks {
-			e.Logger.Outf(logger.Yellow, "task: No tasks available\n")
+			e.Logger.Outf(logger.Yellow, "ops: No tasks available\n")
 		}
 		return false, nil
 	}
-	e.Logger.Outf(logger.Default, "task: Available tasks for this project:\n")
+	e.Logger.Outf(logger.Default, "ops: Available tasks for this project:\n")
 
 	// Format in tab-separated columns with a tab stop of 8.
 	w := tabwriter.NewWriter(e.Stdout, 0, 8, 6, ' ', 0)

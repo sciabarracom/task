@@ -1,4 +1,4 @@
-package main
+package taskmain
 
 import (
 	"context"
@@ -21,7 +21,7 @@ import (
 	"github.com/go-task/task/v3/taskfile/ast"
 )
 
-func main() {
+func Task(_args []string) { os.Args = _args
 	if err := run(); err != nil {
 		l := &logger.Logger{
 			Stdout:  os.Stdout,
