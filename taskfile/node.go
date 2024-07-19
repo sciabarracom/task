@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/go-task/task/v3/errors"
-	"github.com/go-task/task/v3/internal/experiments"
-	"github.com/go-task/task/v3/internal/logger"
+	"github.com/sciabarracom/task/v3/errors"
+	"github.com/sciabarracom/task/v3/internal/experiments"
+	"github.com/sciabarracom/task/v3/internal/logger"
 )
 
 type Node interface {

@@ -8,8 +8,8 @@ import (
 
 	"github.com/spf13/pflag"
 
-	"github.com/go-task/task/v3/internal/experiments"
-	"github.com/go-task/task/v3/taskfile/ast"
+	"github.com/sciabarracom/task/v3/internal/experiments"
+	"github.com/sciabarracom/task/v3/taskfile/ast"
 )
 
 const usage = `Usage: task [flags...] [task...]

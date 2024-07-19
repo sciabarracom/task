@@ -9,10 +9,10 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/go-task/task/v3/errors"
-	"github.com/go-task/task/v3/internal/filepathext"
-	"github.com/go-task/task/v3/internal/logger"
-	"github.com/go-task/task/v3/internal/sysinfo"
+	"github.com/sciabarracom/task/v3/errors"
+	"github.com/sciabarracom/task/v3/internal/filepathext"
+	"github.com/sciabarracom/task/v3/internal/logger"
+	"github.com/sciabarracom/task/v3/internal/sysinfo"
 )
 
 var (

@@ -3,9 +3,9 @@ package task
 import (
 	"fmt"
 
-	"github.com/go-task/task/v3/internal/hash"
-	"github.com/go-task/task/v3/internal/slicesext"
-	"github.com/go-task/task/v3/taskfile/ast"
+	"github.com/sciabarracom/task/v3/internal/hash"
+	"github.com/sciabarracom/task/v3/internal/slicesext"
+	"github.com/sciabarracom/task/v3/taskfile/ast"
 )
 
 func (e *Executor) GetHash(t *ast.Task) (string, error) {

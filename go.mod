@@ -1,4 +1,4 @@
-module github.com/go-task/task/v3
+module github.com/sciabarracom/task/v3
 
 go 1.21.0
 
@@ -17,7 +17,7 @@ require (
 	github.com/otiai10/copy v1.14.0
 	github.com/radovskyb/watcher v1.0.7
 	github.com/sajari/fuzzy v1.0.0
-	github.com/sciabarracom/sh/v3 v3.8.1-0.20240719130809-4b782c2106b4
+	github.com/sciabarracom/sh/v3 v3.8.1-0.20240719132627-8b997d445efa
 	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.9.0
 	github.com/zeebo/xxh3 v1.0.2

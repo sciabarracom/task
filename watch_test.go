@@ -15,9 +15,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/go-task/task/v3"
-	"github.com/go-task/task/v3/internal/filepathext"
-	"github.com/go-task/task/v3/taskfile/ast"
+	"github.com/sciabarracom/task/v3"
+	"github.com/sciabarracom/task/v3/internal/filepathext"
+	"github.com/sciabarracom/task/v3/taskfile/ast"
 )
 
 func TestFileWatcherInterval(t *testing.T) {
