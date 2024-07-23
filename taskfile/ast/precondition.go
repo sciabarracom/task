@@ -5,7 +5,7 @@ import (
 
 	"gopkg.in/yaml.v3"
 
-	"github.com/go-task/task/v3/errors"
+	"github.com/sciabarracom/task/v3/errors"
 )
 
 // Precondition represents a precondition necessary for a task to run

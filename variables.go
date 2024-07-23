@@ -7,12 +7,12 @@ import (
 
 	"github.com/joho/godotenv"
 
-	"github.com/go-task/task/v3/errors"
-	"github.com/go-task/task/v3/internal/execext"
-	"github.com/go-task/task/v3/internal/filepathext"
-	"github.com/go-task/task/v3/internal/fingerprint"
-	"github.com/go-task/task/v3/internal/templater"
-	"github.com/go-task/task/v3/taskfile/ast"
+	"github.com/sciabarracom/task/v3/errors"
+	"github.com/sciabarracom/task/v3/internal/execext"
+	"github.com/sciabarracom/task/v3/internal/filepathext"
+	"github.com/sciabarracom/task/v3/internal/fingerprint"
+	"github.com/sciabarracom/task/v3/internal/templater"
+	"github.com/sciabarracom/task/v3/taskfile/ast"
 )
 
 // CompiledTask returns a copy of a task, but replacing variables in almost all

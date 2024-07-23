@@ -6,8 +6,8 @@ import (
 	"maps"
 	"strings"
 
-	"github.com/go-task/task/v3/internal/deepcopy"
-	"github.com/go-task/task/v3/taskfile/ast"
+	"github.com/sciabarracom/task/v3/internal/deepcopy"
+	"github.com/sciabarracom/task/v3/taskfile/ast"
 	"github.com/go-task/template"
 )
 

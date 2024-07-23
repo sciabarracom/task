@@ -7,8 +7,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/go-task/task/v3/internal/execext"
-	"github.com/go-task/task/v3/internal/filepathext"
+	"github.com/sciabarracom/task/v3/internal/execext"
+	"github.com/sciabarracom/task/v3/internal/filepathext"
 )
 
 // A StdinNode is a node that reads a taskfile from the standard input stream.

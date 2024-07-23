@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/go-task/task/v3/internal/fingerprint"
-	"github.com/go-task/task/v3/taskfile/ast"
+	"github.com/sciabarracom/task/v3/internal/fingerprint"
+	"github.com/sciabarracom/task/v3/taskfile/ast"
 )
 
 // Status returns an error if any the of given tasks is not up-to-date
@@ -35,7 +35,7 @@ func (e *Executor) Status(ctx context.Context, calls ...*ast.Call) error {
 			return err
 		}
 		if !isUpToDate {
-			return fmt.Errorf(`task: Task "%s" is not up-to-date`, t.Name())
+			return fmt.Errorf(`ops: Task "%s" is not up-to-date`, t.Name())
 		}
 	}
 	return nil
