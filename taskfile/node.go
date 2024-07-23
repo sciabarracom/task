@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/go-task/task/v3/errors"
-	"github.com/go-task/task/v3/internal/experiments"
-	"github.com/go-task/task/v3/internal/logger"
+	"github.com/sciabarracom/task/v3/errors"
+	"github.com/sciabarracom/task/v3/internal/experiments"
+	"github.com/sciabarracom/task/v3/internal/logger"
 )
 
 type Node interface {
@@ -56,7 +56,7 @@ func NewNode(
 		node, err = NewFileNode(l, entrypoint, dir, opts...)
 	}
 	if node.Remote() && !experiments.RemoteTaskfiles.Enabled {
-		return nil, errors.New("task: Remote taskfiles are not enabled. You can read more about this experiment and how to enable it at https://taskfile.dev/experiments/remote-taskfiles")
+		return nil, errors.New("ops: Remote taskfiles are not enabled. You can read more about this experiment and how to enable it at https://taskfile.dev/experiments/remote-taskfiles")
 	}
 	return node, err
 }

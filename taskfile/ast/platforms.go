@@ -6,8 +6,8 @@ import (
 
 	"gopkg.in/yaml.v3"
 
-	"github.com/go-task/task/v3/errors"
-	"github.com/go-task/task/v3/internal/goext"
+	"github.com/sciabarracom/task/v3/errors"
+	"github.com/sciabarracom/task/v3/internal/goext"
 )
 
 // Platform represents GOOS and GOARCH values
@@ -73,7 +73,7 @@ func (p *Platform) parsePlatform(input string) error {
 // If so, it will store it. If not, an error is returned
 func (p *Platform) parseOsOrArch(osOrArch string) error {
 	if osOrArch == "" {
-		return fmt.Errorf("task: Blank OS/Arch value provided")
+		return fmt.Errorf("ops: Blank OS/Arch value provided")
 	}
 	if goext.IsKnownOS(osOrArch) {
 		p.OS = osOrArch
@@ -83,19 +83,19 @@ func (p *Platform) parseOsOrArch(osOrArch string) error {
 		p.Arch = osOrArch
 		return nil
 	}
-	return fmt.Errorf("task: Invalid OS/Arch value provided (%s)", osOrArch)
+	return fmt.Errorf("ops: Invalid OS/Arch value provided (%s)", osOrArch)
 }
 
 func (p *Platform) parseArch(arch string) error {
 	if arch == "" {
-		return fmt.Errorf("task: Blank Arch value provided")
+		return fmt.Errorf("ops: Blank Arch value provided")
 	}
 	if p.Arch != "" {
-		return fmt.Errorf("task: Multiple Arch values provided")
+		return fmt.Errorf("ops: Multiple Arch values provided")
 	}
 	if goext.IsKnownArch(arch) {
 		p.Arch = arch
 		return nil
 	}
-	return fmt.Errorf("task: Invalid Arch value provided (%s)", arch)
+	return fmt.Errorf("ops: Invalid Arch value provided (%s)", arch)
 }

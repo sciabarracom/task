@@ -12,7 +12,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/spf13/pflag"
 
-	"github.com/go-task/task/v3/internal/logger"
+	"github.com/sciabarracom/task/v3/internal/logger"
 )
 
 const envPrefix = "TASK_X_"
@@ -69,7 +69,7 @@ func getEnvFilePath() string {
 	var dir, taskfile string
 	fs := pflag.NewFlagSet("experiments", pflag.ContinueOnError)
 	fs.StringVarP(&dir, "dir", "d", "", "Sets directory of execution.")
-	fs.StringVarP(&taskfile, "taskfile", "t", "", `Choose which Taskfile to run. Defaults to "Taskfile.yml".`)
+	fs.StringVarP(&taskfile, "taskfile", "t", "", `Choose which Taskfile to run. Defaults to "opsfile.yml".`)
 	_ = fs.Parse(os.Args[1:])
 	// If the directory is set, find a .env file in that directory.
 	if dir != "" {
