@@ -157,7 +157,7 @@ func (c *Compiler) HandleDynamicVar(v ast.Var, dir string) (string, error) {
 		Stderr:  c.Logger.Stderr,
 	}
 	if err := execext.RunCommand(context.Background(), opts); err != nil {
-		return "", fmt.Errorf(`task: Command "%s" failed: %s`, opts.Command, err)
+		return "", fmt.Errorf(`ops: Command "%s" failed: %s`, opts.Command, err)
 	}
 
 	// Trim a single trailing newline from the result to make most command
@@ -166,7 +166,7 @@ func (c *Compiler) HandleDynamicVar(v ast.Var, dir string) (string, error) {
 	result = strings.TrimSuffix(result, "\n")
 
 	c.dynamicCache[v.Sh] = result
-	c.Logger.VerboseErrf(logger.Magenta, "task: dynamic variable: %q result: %q\n", v.Sh, result)
+	c.Logger.VerboseErrf(logger.Magenta, "ops: dynamic variable: %q result: %q\n", v.Sh, result)
 
 	return result, nil
 }

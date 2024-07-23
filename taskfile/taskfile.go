@@ -17,13 +17,13 @@ import (
 
 var (
 	defaultTaskfiles = []string{
-		"Taskfile.yml",
+		"opsfile.yml",
 		"taskfile.yml",
-		"Taskfile.yaml",
+		"opsfile.yaml",
 		"taskfile.yaml",
-		"Taskfile.dist.yml",
+		"opsfile.dist.yml",
 		"taskfile.dist.yml",
-		"Taskfile.dist.yaml",
+		"opsfile.dist.yaml",
 		"taskfile.dist.yaml",
 	}
 	allowedContentTypes = []string{
@@ -85,7 +85,7 @@ func RemoteExists(ctx context.Context, l *logger.Logger, u *url.URL) (*url.URL, 
 
 		// If the request was successful, return the URL
 		if resp.StatusCode == http.StatusOK {
-			l.VerboseOutf(logger.Magenta, "task: [%s] Not found - Using alternative (%s)\n", alt.String(), taskfile)
+			l.VerboseOutf(logger.Magenta, "ops: [%s] Not found - Using alternative (%s)\n", alt.String(), taskfile)
 			return alt, nil
 		}
 	}
@@ -113,7 +113,7 @@ func Exists(l *logger.Logger, path string) (string, error) {
 	for _, taskfile := range defaultTaskfiles {
 		alt := filepathext.SmartJoin(path, taskfile)
 		if _, err := os.Stat(alt); err == nil {
-			l.VerboseOutf(logger.Magenta, "task: [%s] Not found - Using alternative (%s)\n", path, taskfile)
+			l.VerboseOutf(logger.Magenta, "ops: [%s] Not found - Using alternative (%s)\n", path, taskfile)
 			return filepath.Abs(alt)
 		}
 	}

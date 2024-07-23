@@ -23,7 +23,7 @@ tasks:
     silent: true
 `
 
-const defaultTaskfileName = "Taskfile.yml"
+const defaultTaskfileName = "opsfile.yml"
 
 // InitTaskfile Taskfile creates a new Taskfile
 func InitTaskfile(w io.Writer, dir string) error {

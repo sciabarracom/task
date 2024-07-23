@@ -198,7 +198,7 @@ func (r *Reader) readNode(node Node) (*ast.Taskfile, error) {
 		} else if err != nil {
 			return nil, err
 		}
-		r.logger.VerboseOutf(logger.Magenta, "task: [%s] Fetched cached copy\n", node.Location())
+		r.logger.VerboseOutf(logger.Magenta, "ops: [%s] Fetched cached copy\n", node.Location())
 	} else {
 
 		downloaded := false
@@ -219,7 +219,7 @@ func (r *Reader) readNode(node Node) (*ast.Taskfile, error) {
 			} else if err != nil {
 				return nil, err
 			}
-			r.logger.VerboseOutf(logger.Magenta, "task: [%s] Network timeout. Fetched cached copy\n", node.Location())
+			r.logger.VerboseOutf(logger.Magenta, "ops: [%s] Network timeout. Fetched cached copy\n", node.Location())
 		} else if err != nil {
 			return nil, err
 		} else {
@@ -228,7 +228,7 @@ func (r *Reader) readNode(node Node) (*ast.Taskfile, error) {
 
 		// If the node was remote, we need to check the checksum
 		if node.Remote() && downloaded {
-			r.logger.VerboseOutf(logger.Magenta, "task: [%s] Fetched remote copy\n", node.Location())
+			r.logger.VerboseOutf(logger.Magenta, "ops: [%s] Fetched remote copy\n", node.Location())
 
 			// Get the checksums
 			checksum := checksum(b)
@@ -255,7 +255,7 @@ func (r *Reader) readNode(node Node) (*ast.Taskfile, error) {
 					return nil, err
 				}
 				// Cache the file
-				r.logger.VerboseOutf(logger.Magenta, "task: [%s] Caching downloaded file\n", node.Location())
+				r.logger.VerboseOutf(logger.Magenta, "ops: [%s] Caching downloaded file\n", node.Location())
 				if err = cache.write(node, b); err != nil {
 					return nil, err
 				}

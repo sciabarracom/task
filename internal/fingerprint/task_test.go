@@ -35,7 +35,7 @@ func TestIsTaskUpToDate(t *testing.T) {
 	}{
 		{
 			name: "expect FALSE when no status or sources are defined",
-			task: &ast.Task{
+			ops: &ast.Task{
 				Status:  nil,
 				Sources: nil,
 			},
@@ -45,7 +45,7 @@ func TestIsTaskUpToDate(t *testing.T) {
 		},
 		{
 			name: "expect TRUE when no status is defined and sources are up-to-date",
-			task: &ast.Task{
+			ops: &ast.Task{
 				Status:  nil,
 				Sources: []*ast.Glob{{Glob: "sources"}},
 			},
@@ -57,7 +57,7 @@ func TestIsTaskUpToDate(t *testing.T) {
 		},
 		{
 			name: "expect FALSE when no status is defined and sources are NOT up-to-date",
-			task: &ast.Task{
+			ops: &ast.Task{
 				Status:  nil,
 				Sources: []*ast.Glob{{Glob: "sources"}},
 			},
@@ -69,7 +69,7 @@ func TestIsTaskUpToDate(t *testing.T) {
 		},
 		{
 			name: "expect TRUE when status is up-to-date and sources are not defined",
-			task: &ast.Task{
+			ops: &ast.Task{
 				Status:  []string{"status"},
 				Sources: nil,
 			},
@@ -81,7 +81,7 @@ func TestIsTaskUpToDate(t *testing.T) {
 		},
 		{
 			name: "expect TRUE when status and sources are up-to-date",
-			task: &ast.Task{
+			ops: &ast.Task{
 				Status:  []string{"status"},
 				Sources: []*ast.Glob{{Glob: "sources"}},
 			},
@@ -95,7 +95,7 @@ func TestIsTaskUpToDate(t *testing.T) {
 		},
 		{
 			name: "expect FALSE when status is up-to-date, but sources are NOT up-to-date",
-			task: &ast.Task{
+			ops: &ast.Task{
 				Status:  []string{"status"},
 				Sources: []*ast.Glob{{Glob: "sources"}},
 			},
@@ -109,7 +109,7 @@ func TestIsTaskUpToDate(t *testing.T) {
 		},
 		{
 			name: "expect FALSE when status is NOT up-to-date and sources are not defined",
-			task: &ast.Task{
+			ops: &ast.Task{
 				Status:  []string{"status"},
 				Sources: nil,
 			},
@@ -121,7 +121,7 @@ func TestIsTaskUpToDate(t *testing.T) {
 		},
 		{
 			name: "expect FALSE when status is NOT up-to-date, but sources are up-to-date",
-			task: &ast.Task{
+			ops: &ast.Task{
 				Status:  []string{"status"},
 				Sources: []*ast.Glob{{Glob: "sources"}},
 			},
@@ -135,7 +135,7 @@ func TestIsTaskUpToDate(t *testing.T) {
 		},
 		{
 			name: "expect FALSE when status and sources are NOT up-to-date",
-			task: &ast.Task{
+			ops: &ast.Task{
 				Status:  []string{"status"},
 				Sources: []*ast.Glob{{Glob: "sources"}},
 			},

@@ -22,6 +22,8 @@ github.com/frankban/quicktest v1.14.6 h1:7Xjx+VpznH+oBnejlPUj8oUpdxnVs4f8XU8WnHk
 github.com/frankban/quicktest v1.14.6/go.mod h1:4ptaffx2x8+WTWXmUCuVU6aPUX1/Mz7zb5vbUoiM6w0=
 github.com/go-task/slim-sprig/v3 v3.0.0 h1:sUs3vkvUymDpBKi3qH1YSqBQk9+9D/8M2mN1vB6EwHI=
 github.com/go-task/slim-sprig/v3 v3.0.0/go.mod h1:W848ghGpv3Qj3dhTPRyJypKRiqCdHZiAzKg9hl15HA8=
+github.com/go-task/task/v3 v3.38.0 h1:O7kgA6BfwktXHPrheByQO46p3teKtRuq1EpGnFxNzbo=
+github.com/go-task/task/v3 v3.38.0/go.mod h1:UzLDHoXTKNAtWwFP3WVsfMhlSw3K8i9KNzEO9kCHix8=
 github.com/go-task/template v0.0.0-20240602015157-960e6f576656 h1:knZZ4zVdTBQnevBz0zSES++4Mr7wr+cHopLvHabIgkA=
 github.com/go-task/template v0.0.0-20240602015157-960e6f576656/go.mod h1:RgwRaZK+kni/hJJ7/AaOE2lPQFPbAdji/DyhC6pxo4k=
 github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
@@ -57,6 +59,8 @@ github.com/rogpeppe/go-internal v1.12.0 h1:exVL4IDcn6na9z1rAb56Vxr+CgyK3nn3O+epU
 github.com/rogpeppe/go-internal v1.12.0/go.mod h1:E+RYuTGaKKdloAfM02xzb0FW3Paa99yedzYV+kq4uf4=
 github.com/sajari/fuzzy v1.0.0 h1:+FmwVvJErsd0d0hAPlj4CxqxUtQY/fOoY0DwX4ykpRY=
 github.com/sajari/fuzzy v1.0.0/go.mod h1:OjYR6KxoWOe9+dOlXeiCJd4dIbED4Oo8wpS89o0pwOo=
+github.com/sciabarracom/sh/v3 v3.8.1 h1:DQXhDNnbcGbeMtaTFbGa8OlmZZxxfBcwI8u8oS2gSyg=
+github.com/sciabarracom/sh/v3 v3.8.1/go.mod h1:CeMVr3PRLhlUrS+VPLTp8dS5/6xNzmmX0h/WVHRR6DA=
 github.com/spf13/pflag v1.0.5 h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA=
 github.com/spf13/pflag v1.0.5/go.mod h1:McXfInJRrz4CZXVZOBLb0bTZqETkiAhM9Iw0y3An2Bg=
 github.com/stretchr/objx v0.5.2 h1:xuMeJ0Sdp5ZMRXx/aWO6RZxdr3beISkG5/G/aIRr3pY=
