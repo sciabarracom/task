@@ -7,9 +7,9 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/go-task/task/v3/internal/logger"
-	"github.com/go-task/task/v3/internal/summary"
-	"github.com/go-task/task/v3/taskfile/ast"
+	"github.com/sciabarracom/task/v3/internal/logger"
+	"github.com/sciabarracom/task/v3/internal/summary"
+	"github.com/sciabarracom/task/v3/taskfile/ast"
 )
 
 func TestPrintsDependenciesIfPresent(t *testing.T) {
@@ -56,7 +56,7 @@ func TestPrintTaskName(t *testing.T) {
 
 	summary.PrintTask(&l, task)
 
-	assert.Contains(t, buffer.String(), "task: my-task-name\n")
+	assert.Contains(t, buffer.String(), "ops: my-task-name\n")
 }
 
 func TestPrintTaskCommandsIfPresent(t *testing.T) {
@@ -107,7 +107,7 @@ func TestLayout(t *testing.T) {
 }
 
 func expectedOutput() string {
-	expected := `task: sample-task
+	expected := `ops: sample-task
 
 line1
 line2
@@ -165,7 +165,7 @@ func TestPrintAllWithSpaces(t *testing.T) {
 		&ast.Taskfile{Tasks: tasks},
 		[]*ast.Call{{Task: "t1"}, {Task: "t2"}, {Task: "t3"}})
 
-	assert.True(t, strings.HasPrefix(buffer.String(), "task: t1"))
-	assert.Contains(t, buffer.String(), "\n(task does not have description or summary)\n\n\ntask: t2")
-	assert.Contains(t, buffer.String(), "\n(task does not have description or summary)\n\n\ntask: t3")
+	assert.True(t, strings.HasPrefix(buffer.String(), "ops: t1"))
+	assert.Contains(t, buffer.String(), "\n(task does not have description or summary)\n\n\nops: t2")
+	assert.Contains(t, buffer.String(), "\n(task does not have description or summary)\n\n\nops: t3")
 }

@@ -3,7 +3,7 @@ package fingerprint
 import (
 	"context"
 
-	"github.com/go-task/task/v3/taskfile/ast"
+	"github.com/sciabarracom/task/v3/taskfile/ast"
 )
 
 // StatusCheckable defines any type that can check if the status of a task is up-to-date.

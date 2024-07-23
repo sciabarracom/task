@@ -5,8 +5,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/go-task/task/v3/errors"
-	"github.com/go-task/task/v3/internal/filepathext"
+	"github.com/sciabarracom/task/v3/errors"
+	"github.com/sciabarracom/task/v3/internal/filepathext"
 )
 
 const defaultTaskfile = `# https://taskfile.dev
@@ -23,7 +23,7 @@ tasks:
     silent: true
 `
 
-const defaultTaskfileName = "Taskfile.yml"
+const defaultTaskfileName = "opsfile.yml"
 
 // InitTaskfile Taskfile creates a new Taskfile
 func InitTaskfile(w io.Writer, dir string) error {
