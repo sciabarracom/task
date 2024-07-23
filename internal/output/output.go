@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-task/task/v3/internal/logger"
-	"github.com/go-task/task/v3/internal/templater"
-	"github.com/go-task/task/v3/taskfile/ast"
+	"github.com/sciabarracom/task/v3/internal/logger"
+	"github.com/sciabarracom/task/v3/internal/templater"
+	"github.com/sciabarracom/task/v3/taskfile/ast"
 )
 
 type Output interface {
@@ -35,13 +35,13 @@ func BuildFor(o *ast.Output, logger *logger.Logger) (Output, error) {
 		}
 		return NewPrefixed(logger), nil
 	default:
-		return nil, fmt.Errorf(`task: output style %q not recognized`, o.Name)
+		return nil, fmt.Errorf(`ops: output style %q not recognized`, o.Name)
 	}
 }
 
 func checkOutputGroupUnset(o *ast.Output) error {
 	if o.Group.IsSet() {
-		return fmt.Errorf("task: output style %q does not support the group begin/end parameter", o.Name)
+		return fmt.Errorf("ops: output style %q does not support the group begin/end parameter", o.Name)
 	}
 	return nil
 }

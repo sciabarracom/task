@@ -3,8 +3,8 @@ package task
 import (
 	"context"
 
-	"github.com/go-task/task/v3/errors"
-	"github.com/go-task/task/v3/taskfile/ast"
+	"github.com/sciabarracom/task/v3/errors"
+	"github.com/sciabarracom/task/v3/taskfile/ast"
 )
 
 func (e *Executor) areTaskRequiredVarsSet(ctx context.Context, t *ast.Task, call *ast.Call) error {
