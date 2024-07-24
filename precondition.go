@@ -4,14 +4,14 @@ import (
 	"context"
 	"errors"
 
-	"github.com/go-task/task/v3/internal/env"
-	"github.com/go-task/task/v3/internal/execext"
-	"github.com/go-task/task/v3/internal/logger"
-	"github.com/go-task/task/v3/taskfile/ast"
+	"github.com/sciabarracom/task/v3/internal/env"
+	"github.com/sciabarracom/task/v3/internal/execext"
+	"github.com/sciabarracom/task/v3/internal/logger"
+	"github.com/sciabarracom/task/v3/taskfile/ast"
 )
 
 // ErrPreconditionFailed is returned when a precondition fails
-var ErrPreconditionFailed = errors.New("task: precondition not met")
+var ErrPreconditionFailed = errors.New("ops: precondition not met")
 
 func (e *Executor) areTaskPreconditionsMet(ctx context.Context, t *ast.Task) (bool, error) {
 	for _, p := range t.Preconditions {
@@ -22,7 +22,7 @@ func (e *Executor) areTaskPreconditionsMet(ctx context.Context, t *ast.Task) (bo
 		})
 		if err != nil {
 			if !errors.Is(err, context.Canceled) {
-				e.Logger.Errf(logger.Magenta, "task: %s\n", p.Msg)
+				e.Logger.Errf(logger.Magenta, "ops: %s\n", p.Msg)
 			}
 			return false, ErrPreconditionFailed
 		}

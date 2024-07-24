@@ -7,8 +7,8 @@ import (
 	"github.com/stretchr/testify/require"
 	"gopkg.in/yaml.v3"
 
-	"github.com/go-task/task/v3/internal/omap"
-	"github.com/go-task/task/v3/taskfile/ast"
+	"github.com/sciabarracom/task/v3/internal/omap"
+	"github.com/sciabarracom/task/v3/taskfile/ast"
 )
 
 func TestCmdParse(t *testing.T) {
@@ -16,12 +16,12 @@ func TestCmdParse(t *testing.T) {
 		yamlCmd      = `echo "a string command"`
 		yamlDep      = `"task-name"`
 		yamlTaskCall = `
-task: another-task
+ops: another-task
 vars:
   PARAM1: VALUE1
   PARAM2: VALUE2
 `
-		yamlDeferredCall = `defer: { task: some_task, vars: { PARAM1: "var" } }`
+		yamlDeferredCall = `defer: { ops: some_task, vars: { PARAM1: "var" } }`
 		yamlDeferredCmd  = `defer: echo 'test'`
 	)
 	tests := []struct {

@@ -5,7 +5,7 @@ package mocks
 import (
 	context "context"
 
-	ast "github.com/go-task/task/v3/taskfile/ast"
+	ast "github.com/sciabarracom/task/v3/taskfile/ast"
 
 	mock "github.com/stretchr/testify/mock"
 )
