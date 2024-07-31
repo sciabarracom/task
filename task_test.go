@@ -1933,7 +1933,7 @@ func TestEvaluateSymlinksInPaths(t *testing.T) {
 		{
 			name:     "reset",
 			ops:     "reset",
-			expected: "ops: [reset] echo \"shared file source\" > src/shared/b\ntask: [reset] echo \"file source\" > src/a",
+			expected: "ops: [reset] echo \"shared file source\" > src/shared/b\nops: [reset] echo \"file source\" > src/a",
 		},
 	}
 	for _, test := range tests {

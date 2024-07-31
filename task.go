@@ -396,7 +396,7 @@ func (e *Executor) startExecution(ctx context.Context, t *ast.Task, execute func
 
 	if otherExecutionCtx, ok := e.executionHashes[h]; ok {
 		e.executionHashesMutex.Unlock()
-		e.Logger.VerboseErrf(logger.Magenta, "ops: skipping execution of task: %s\n", h)
+		e.Logger.VerboseErrf(logger.Magenta, "ops: skipping execution of ops: %s\n", h)
 
 		// Release our execution slot to avoid blocking other tasks while we wait
 		reacquire := e.releaseConcurrencyLimit()

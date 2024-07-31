@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/spf13/pflag"
 	"github.com/sciabarracom/sh/v3/syntax"
+	"github.com/spf13/pflag"
 
 	"github.com/sciabarracom/task/v3"
 	"github.com/sciabarracom/task/v3/args"
