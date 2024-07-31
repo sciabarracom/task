@@ -6,8 +6,8 @@ import (
 	"io"
 	"strings"
 
-	"github.com/go-task/task/v3/internal/logger"
-	"github.com/go-task/task/v3/internal/templater"
+	"github.com/sciabarracom/task/v3/internal/logger"
+	"github.com/sciabarracom/task/v3/internal/templater"
 )
 
 type Prefixed struct {

@@ -1,4 +1,4 @@
-package main
+package taskmain
 
 import (
 	"context"
@@ -21,7 +21,7 @@ import (
 	"github.com/sciabarracom/task/v3/taskfile/ast"
 )
 
-func main() {
+func _main() {
 	if err := run(); err != nil {
 		l := &logger.Logger{
 			Stdout:  os.Stdout,
@@ -223,4 +223,33 @@ func getArgs() ([]string, string, error) {
 		quotedCliArgs = append(quotedCliArgs, quotedCliArg)
 	}
 	return args[:doubleDashPos], strings.Join(quotedCliArgs, " "), nil
+}
+
+var todoFlagInit = true
+
+func Task(_args []string) (int, error) {
+	os.Args = _args
+	if todoFlagInit {
+		flags.FlagInit()
+		todoFlagInit = false
+	}
+	if err := run(); err != nil {
+		l := &logger.Logger{
+			Stdout:  os.Stdout,
+			Stderr:  os.Stderr,
+			Verbose: flags.Verbose,
+			Color:   flags.Color,
+		}
+		if err, ok := err.(*errors.TaskRunError); ok && flags.ExitCode {
+			l.Errf(logger.Red, "%v\n", err)
+			return err.TaskExitCode(), err
+		}
+		if err, ok := err.(errors.TaskError); ok {
+			l.Errf(logger.Red, "%v\n", err)
+			return err.Code(), err
+		}
+		l.Errf(logger.Red, "%v\n", err)
+		return errors.CodeUnknown, err
+	}
+	return errors.CodeOk, nil
 }

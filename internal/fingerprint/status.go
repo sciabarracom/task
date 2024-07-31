@@ -3,10 +3,10 @@ package fingerprint
 import (
 	"context"
 
-	"github.com/go-task/task/v3/internal/env"
-	"github.com/go-task/task/v3/internal/execext"
-	"github.com/go-task/task/v3/internal/logger"
-	"github.com/go-task/task/v3/taskfile/ast"
+	"github.com/sciabarracom/task/v3/internal/env"
+	"github.com/sciabarracom/task/v3/internal/execext"
+	"github.com/sciabarracom/task/v3/internal/logger"
+	"github.com/sciabarracom/task/v3/taskfile/ast"
 )
 
 type StatusChecker struct {
@@ -27,10 +27,10 @@ func (checker *StatusChecker) IsUpToDate(ctx context.Context, t *ast.Task) (bool
 			Env:     env.Get(t),
 		})
 		if err != nil {
-			checker.logger.VerboseOutf(logger.Yellow, "task: status command %s exited non-zero: %s\n", s, err)
+			checker.logger.VerboseOutf(logger.Yellow, "ops: status command %s exited non-zero: %s\n", s, err)
 			return false, nil
 		}
-		checker.logger.VerboseOutf(logger.Yellow, "task: status command %s exited zero\n", s)
+		checker.logger.VerboseOutf(logger.Yellow, "ops: status command %s exited zero\n", s)
 	}
 	return true, nil
 }

@@ -20,7 +20,7 @@ func (err TaskfileNotFoundError) Error() string {
 	if err.Walk {
 		walkText = " (or any of the parent directories)"
 	}
-	return fmt.Sprintf(`task: No Taskfile found at %q%s`, err.URI, walkText)
+	return fmt.Sprintf(`ops: No Taskfile found at %q%s`, err.URI, walkText)
 }
 
 func (err TaskfileNotFoundError) Code() int {
@@ -32,7 +32,7 @@ func (err TaskfileNotFoundError) Code() int {
 type TaskfileAlreadyExistsError struct{}
 
 func (err TaskfileAlreadyExistsError) Error() string {
-	return "task: A Taskfile already exists"
+	return "ops: A Taskfile already exists"
 }
 
 func (err TaskfileAlreadyExistsError) Code() int {
@@ -47,7 +47,7 @@ type TaskfileInvalidError struct {
 }
 
 func (err TaskfileInvalidError) Error() string {
-	return fmt.Sprintf("task: Failed to parse %s:\n%v", err.URI, err.Err)
+	return fmt.Sprintf("ops: Failed to parse %s:\n%v", err.URI, err.Err)
 }
 
 func (err TaskfileInvalidError) Code() int {
@@ -66,7 +66,7 @@ func (err TaskfileFetchFailedError) Error() string {
 	if err.HTTPStatusCode != 0 {
 		statusText = fmt.Sprintf(" with status code %d (%s)", err.HTTPStatusCode, http.StatusText(err.HTTPStatusCode))
 	}
-	return fmt.Sprintf(`task: Download of %q failed%s`, err.URI, statusText)
+	return fmt.Sprintf(`ops: Download of %q failed%s`, err.URI, statusText)
 }
 
 func (err TaskfileFetchFailedError) Code() int {
@@ -81,7 +81,7 @@ type TaskfileNotTrustedError struct {
 
 func (err *TaskfileNotTrustedError) Error() string {
 	return fmt.Sprintf(
-		`task: Taskfile %q not trusted by user`,
+		`ops: Taskfile %q not trusted by user`,
 		err.URI,
 	)
 }
@@ -98,7 +98,7 @@ type TaskfileNotSecureError struct {
 
 func (err *TaskfileNotSecureError) Error() string {
 	return fmt.Sprintf(
-		`task: Taskfile %q cannot be downloaded over an insecure connection. You can override this by using the --insecure flag`,
+		`ops: Taskfile %q cannot be downloaded over an insecure connection. You can override this by using the --insecure flag`,
 		err.URI,
 	)
 }
@@ -115,7 +115,7 @@ type TaskfileCacheNotFoundError struct {
 
 func (err *TaskfileCacheNotFoundError) Error() string {
 	return fmt.Sprintf(
-		`task: Taskfile %q was not found in the cache. Remove the --offline flag to use a remote copy or download it using the --download flag`,
+		`ops: Taskfile %q was not found in the cache. Remove the --offline flag to use a remote copy or download it using the --download flag`,
 		err.URI,
 	)
 }
@@ -136,12 +136,12 @@ type TaskfileVersionCheckError struct {
 func (err *TaskfileVersionCheckError) Error() string {
 	if err.SchemaVersion == nil {
 		return fmt.Sprintf(
-			`task: Missing schema version in Taskfile %q`,
+			`ops: Missing schema version in Taskfile %q`,
 			err.URI,
 		)
 	}
 	return fmt.Sprintf(
-		"task: Invalid schema version in Taskfile %q:\nSchema version (%s) %s",
+		"ops: Invalid schema version in Taskfile %q:\nSchema version (%s) %s",
 		err.URI,
 		err.SchemaVersion.String(),
 		err.Message,
@@ -166,7 +166,7 @@ func (err *TaskfileNetworkTimeoutError) Error() string {
 		cacheText = " and no offline copy was found in the cache"
 	}
 	return fmt.Sprintf(
-		`task: Network connection timed out after %s while attempting to download Taskfile %q%s`,
+		`ops: Network connection timed out after %s while attempting to download Taskfile %q%s`,
 		err.Timeout, err.URI, cacheText,
 	)
 }
@@ -183,7 +183,7 @@ type TaskfileCycleError struct {
 }
 
 func (err TaskfileCycleError) Error() string {
-	return fmt.Sprintf("task: include cycle detected between %s <--> %s",
+	return fmt.Sprintf("ops: include cycle detected between %s <--> %s",
 		err.Source,
 		err.Destination,
 	)
