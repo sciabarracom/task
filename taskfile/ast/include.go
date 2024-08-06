@@ -3,8 +3,8 @@ package ast
 import (
 	"gopkg.in/yaml.v3"
 
-	"github.com/go-task/task/v3/errors"
-	omap "github.com/go-task/task/v3/internal/omap"
+	"github.com/sciabarracom/task/v3/errors"
+	omap "github.com/sciabarracom/task/v3/internal/omap"
 )
 
 // Include represents information about included taskfiles

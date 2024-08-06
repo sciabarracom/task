@@ -7,9 +7,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/go-task/task/v3/internal/execext"
-	"github.com/go-task/task/v3/internal/filepathext"
-	"github.com/go-task/task/v3/internal/logger"
+	"github.com/sciabarracom/task/v3/internal/execext"
+	"github.com/sciabarracom/task/v3/internal/filepathext"
+	"github.com/sciabarracom/task/v3/internal/logger"
 )
 
 // A FileNode is a node that reads a taskfile from the local filesystem.

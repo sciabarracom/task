@@ -8,10 +8,10 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/go-task/task/v3/errors"
-	"github.com/go-task/task/v3/internal/execext"
-	"github.com/go-task/task/v3/internal/filepathext"
-	"github.com/go-task/task/v3/internal/logger"
+	"github.com/sciabarracom/task/v3/errors"
+	"github.com/sciabarracom/task/v3/internal/execext"
+	"github.com/sciabarracom/task/v3/internal/filepathext"
+	"github.com/sciabarracom/task/v3/internal/logger"
 )
 
 // An HTTPNode is a node that reads a Taskfile from a remote location via HTTP.

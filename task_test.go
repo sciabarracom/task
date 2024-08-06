@@ -17,10 +17,10 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/go-task/task/v3"
-	"github.com/go-task/task/v3/errors"
-	"github.com/go-task/task/v3/internal/filepathext"
-	"github.com/go-task/task/v3/taskfile/ast"
+	"github.com/sciabarracom/task/v3"
+	"github.com/sciabarracom/task/v3/errors"
+	"github.com/sciabarracom/task/v3/internal/filepathext"
+	"github.com/sciabarracom/task/v3/taskfile/ast"
 )
 
 func init() {
@@ -324,20 +324,20 @@ func TestStatus(t *testing.T) {
 
 	// all: not up-to-date
 	require.NoError(t, e.Run(context.Background(), &ast.Call{Task: "gen-foo"}))
-	assert.Equal(t, "task: [gen-foo] touch foo.txt", strings.TrimSpace(buff.String()))
+	assert.Equal(t, "ops: [gen-foo] touch foo.txt", strings.TrimSpace(buff.String()))
 	buff.Reset()
 	// status: not up-to-date
 	require.NoError(t, e.Run(context.Background(), &ast.Call{Task: "gen-foo"}))
-	assert.Equal(t, "task: [gen-foo] touch foo.txt", strings.TrimSpace(buff.String()))
+	assert.Equal(t, "ops: [gen-foo] touch foo.txt", strings.TrimSpace(buff.String()))
 	buff.Reset()
 
 	// sources: not up-to-date
 	require.NoError(t, e.Run(context.Background(), &ast.Call{Task: "gen-bar"}))
-	assert.Equal(t, "task: [gen-bar] touch bar.txt", strings.TrimSpace(buff.String()))
+	assert.Equal(t, "ops: [gen-bar] touch bar.txt", strings.TrimSpace(buff.String()))
 	buff.Reset()
 	// all: up-to-date
 	require.NoError(t, e.Run(context.Background(), &ast.Call{Task: "gen-bar"}))
-	assert.Equal(t, `task: Task "gen-bar" is up to date`, strings.TrimSpace(buff.String()))
+	assert.Equal(t, `ops: Task "gen-bar" is up to date`, strings.TrimSpace(buff.String()))
 	buff.Reset()
 
 	// sources: not up-to-date, no output produced.
@@ -351,7 +351,7 @@ func TestStatus(t *testing.T) {
 	e.Verbose = true
 	// up-to-date, output produced due to Verbose mode.
 	require.NoError(t, e.Run(context.Background(), &ast.Call{Task: "gen-silent-baz"}))
-	assert.Equal(t, `task: Task "gen-silent-baz" is up to date`, strings.TrimSpace(buff.String()))
+	assert.Equal(t, `ops: Task "gen-silent-baz" is up to date`, strings.TrimSpace(buff.String()))
 	buff.Reset()
 }
 
@@ -375,7 +375,7 @@ func TestPrecondition(t *testing.T) {
 	// A precondition that was not met
 	require.Error(t, e.Run(context.Background(), &ast.Call{Task: "impossible"}))
 
-	if buff.String() != "task: 1 != 0 obviously!\n" {
+	if buff.String() != "ops: 1 != 0 obviously!\n" {
 		t.Errorf("Wrong output message: %s", buff.String())
 	}
 	buff.Reset()
@@ -383,14 +383,14 @@ func TestPrecondition(t *testing.T) {
 	// Calling a task with a precondition in a dependency fails the task
 	require.Error(t, e.Run(context.Background(), &ast.Call{Task: "depends_on_impossible"}))
 
-	if buff.String() != "task: 1 != 0 obviously!\n" {
+	if buff.String() != "ops: 1 != 0 obviously!\n" {
 		t.Errorf("Wrong output message: %s", buff.String())
 	}
 	buff.Reset()
 
 	// Calling a task with a precondition in a cmd fails the task
 	require.Error(t, e.Run(context.Background(), &ast.Call{Task: "executes_failing_task_as_cmd"}))
-	if buff.String() != "task: 1 != 0 obviously!\n" {
+	if buff.String() != "ops: 1 != 0 obviously!\n" {
 		t.Errorf("Wrong output message: %s", buff.String())
 	}
 	buff.Reset()
@@ -426,8 +426,8 @@ func TestGenerates(t *testing.T) {
 
 	for _, theTask := range []string{relTask, absTask, fileWithSpaces} {
 		destFile := filepathext.SmartJoin(dir, theTask)
-		upToDate := fmt.Sprintf("task: Task \"%s\" is up to date\n", srcTask) +
-			fmt.Sprintf("task: Task \"%s\" is up to date\n", theTask)
+		upToDate := fmt.Sprintf("ops: Task \"%s\" is up to date\n", srcTask) +
+			fmt.Sprintf("ops: Task \"%s\" is up to date\n", theTask)
 
 		// Run task for the first time.
 		require.NoError(t, e.Run(context.Background(), &ast.Call{Task: theTask}))
@@ -500,7 +500,7 @@ func TestStatusChecksum(t *testing.T) {
 
 			buff.Reset()
 			require.NoError(t, e.Run(context.Background(), &ast.Call{Task: test.task}))
-			assert.Equal(t, `task: Task "`+test.task+`" is up to date`+"\n", buff.String())
+			assert.Equal(t, `ops: Task "`+test.task+`" is up to date`+"\n", buff.String())
 
 			s, err = os.Stat(filepathext.SmartJoin(tempdir.Fingerprint, "checksum/"+test.task))
 			require.NoError(t, err)
@@ -849,11 +849,11 @@ func TestStatusVariables(t *testing.T) {
 
 func TestInit(t *testing.T) {
 	const dir = "testdata/init"
-	file := filepathext.SmartJoin(dir, "Taskfile.yml")
+	file := filepathext.SmartJoin(dir, "opsfile.yml")
 
 	_ = os.Remove(file)
 	if _, err := os.Stat(file); err == nil {
-		t.Errorf("Taskfile.yml should not exist")
+		t.Errorf("opsfile.yml should not exist")
 	}
 
 	if err := task.InitTaskfile(io.Discard, dir); err != nil {
@@ -861,7 +861,7 @@ func TestInit(t *testing.T) {
 	}
 
 	if _, err := os.Stat(file); err != nil {
-		t.Errorf("Taskfile.yml should exist")
+		t.Errorf("opsfile.yml should exist")
 	}
 	_ = os.Remove(file)
 }
@@ -960,7 +960,7 @@ func TestDry(t *testing.T) {
 	require.NoError(t, e.Setup())
 	require.NoError(t, e.Run(context.Background(), &ast.Call{Task: "build"}))
 
-	assert.Equal(t, "task: [build] touch file.txt", strings.TrimSpace(buff.String()))
+	assert.Equal(t, "ops: [build] touch file.txt", strings.TrimSpace(buff.String()))
 	if _, err := os.Stat(file); err == nil {
 		t.Errorf("File should not exist %s", file)
 	}
@@ -1041,7 +1041,7 @@ func TestIncludeCycle(t *testing.T) {
 
 	err := e.Setup()
 	require.Error(t, err)
-	assert.Contains(t, err.Error(), "task: include cycle detected between")
+	assert.Contains(t, err.Error(), "ops: include cycle detected between")
 }
 
 func TestIncludesIncorrect(t *testing.T) {
@@ -1191,7 +1191,7 @@ func TestIncludesInternal(t *testing.T) {
 	}{
 		{"included internal task via task", "task-1", false, "Hello, World!\n"},
 		{"included internal task via dep", "task-2", false, "Hello, World!\n"},
-		{"included internal direct", "included:task-3", true, "task: No tasks with description available. Try --list-all to list all tasks\n"},
+		{"included internal direct", "included:task-3", true, "ops: No tasks with description available. Try --list-all to list all tasks\n"},
 	}
 
 	for _, test := range tests {
@@ -1341,10 +1341,10 @@ func TestIncludesUnshadowedDefault(t *testing.T) {
 
 func TestSupportedFileNames(t *testing.T) {
 	fileNames := []string{
-		"Taskfile.yml",
-		"Taskfile.yaml",
-		"Taskfile.dist.yml",
-		"Taskfile.dist.yaml",
+		"opsfile.yml",
+		"opsfile.yaml",
+		"opsfile.dist.yml",
+		"opsfile.dist.yaml",
 	}
 	for _, fileName := range fileNames {
 		t.Run(fileName, func(t *testing.T) {
@@ -1498,7 +1498,7 @@ func TestDisplaysErrorOnVersion1Schema(t *testing.T) {
 	}
 	err := e.Setup()
 	require.Error(t, err)
-	assert.Regexp(t, regexp.MustCompile(`task: Invalid schema version in Taskfile \".*testdata\/version\/v1\/Taskfile\.yml\":\nSchema version \(1\.0\.0\) no longer supported\. Please use v3 or above`), err.Error())
+	assert.Regexp(t, regexp.MustCompile(`ops: Invalid schema version in Taskfile \".*testdata\/version\/v1\/Taskfile\.yml\":\nSchema version \(1\.0\.0\) no longer supported\. Please use v3 or above`), err.Error())
 }
 
 func TestDisplaysErrorOnVersion2Schema(t *testing.T) {
@@ -1510,7 +1510,7 @@ func TestDisplaysErrorOnVersion2Schema(t *testing.T) {
 	}
 	err := e.Setup()
 	require.Error(t, err)
-	assert.Regexp(t, regexp.MustCompile(`task: Invalid schema version in Taskfile \".*testdata\/version\/v2\/Taskfile\.yml\":\nSchema version \(2\.0\.0\) no longer supported\. Please use v3 or above`), err.Error())
+	assert.Regexp(t, regexp.MustCompile(`ops: Invalid schema version in Taskfile \".*testdata\/version\/v2\/Taskfile\.yml\":\nSchema version \(2\.0\.0\) no longer supported\. Please use v3 or above`), err.Error())
 }
 
 func TestShortTaskNotation(t *testing.T) {
@@ -1692,11 +1692,11 @@ func TestRunOnceSharedDeps(t *testing.T) {
 	require.NoError(t, e.Setup())
 	require.NoError(t, e.Run(context.Background(), &ast.Call{Task: "build"}))
 
-	rx := regexp.MustCompile(`task: \[service-[a,b]:library:build\] echo "build library"`)
+	rx := regexp.MustCompile(`ops: \[service-[a,b]:library:build\] echo "build library"`)
 	matches := rx.FindAllStringSubmatch(buff.String(), -1)
 	assert.Len(t, matches, 1)
-	assert.Contains(t, buff.String(), `task: [service-a:build] echo "build a"`)
-	assert.Contains(t, buff.String(), `task: [service-b:build] echo "build b"`)
+	assert.Contains(t, buff.String(), `ops: [service-a:build] echo "build a"`)
+	assert.Contains(t, buff.String(), `ops: [service-b:build] echo "build b"`)
 }
 
 func TestDeferredCmds(t *testing.T) {
@@ -1710,14 +1710,14 @@ func TestDeferredCmds(t *testing.T) {
 	require.NoError(t, e.Setup())
 
 	expectedOutputOrder := strings.TrimSpace(`
-task: [task-2] echo 'cmd ran'
+ops: [task-2] echo 'cmd ran'
 cmd ran
-task: [task-2] exit 1
-task: [task-2] echo 'failing' && exit 2
+ops: [task-2] exit 1
+ops: [task-2] echo 'failing' && exit 2
 failing
-task: [task-2] echo 'echo ran'
+ops: [task-2] echo 'echo ran'
 echo ran
-task: [task-1] echo 'task-1 ran successfully'
+ops: [task-1] echo 'task-1 ran successfully'
 task-1 ran successfully
 `)
 	require.Error(t, e.Run(context.Background(), &ast.Call{Task: "task-2"}))
@@ -1762,11 +1762,11 @@ func TestOutputGroup(t *testing.T) {
 	require.NoError(t, e.Setup())
 
 	expectedOutputOrder := strings.TrimSpace(`
-task: [hello] echo 'Hello!'
+ops: [hello] echo 'Hello!'
 ::group::hello
 Hello!
 ::endgroup::
-task: [bye] echo 'Bye!'
+ops: [bye] echo 'Bye!'
 ::group::bye
 Bye!
 ::endgroup::
@@ -1818,17 +1818,17 @@ func TestIncludedVars(t *testing.T) {
 	require.NoError(t, e.Setup())
 
 	expectedOutputOrder := strings.TrimSpace(`
-task: [included1:task1] echo "VAR_1 is included1-var1"
+ops: [included1:task1] echo "VAR_1 is included1-var1"
 VAR_1 is included1-var1
-task: [included1:task1] echo "VAR_2 is included-default-var2"
+ops: [included1:task1] echo "VAR_2 is included-default-var2"
 VAR_2 is included-default-var2
-task: [included2:task1] echo "VAR_1 is included2-var1"
+ops: [included2:task1] echo "VAR_1 is included2-var1"
 VAR_1 is included2-var1
-task: [included2:task1] echo "VAR_2 is included-default-var2"
+ops: [included2:task1] echo "VAR_2 is included-default-var2"
 VAR_2 is included-default-var2
-task: [included3:task1] echo "VAR_1 is included-default-var1"
+ops: [included3:task1] echo "VAR_1 is included-default-var1"
 VAR_1 is included-default-var1
-task: [included3:task1] echo "VAR_2 is included-default-var2"
+ops: [included3:task1] echo "VAR_2 is included-default-var2"
 VAR_2 is included-default-var2
 `)
 	require.NoError(t, e.Run(context.Background(), &ast.Call{Task: "task1"}))
@@ -1847,11 +1847,11 @@ func TestIncludedVarsMultiLevel(t *testing.T) {
 	require.NoError(t, e.Setup())
 
 	expectedOutputOrder := strings.TrimSpace(`
-task: [lib:greet] echo 'Hello world'
+ops: [lib:greet] echo 'Hello world'
 Hello world
-task: [foo:lib:greet] echo 'Hello foo'
+ops: [foo:lib:greet] echo 'Hello foo'
 Hello foo
-task: [bar:lib:greet] echo 'Hello bar'
+ops: [bar:lib:greet] echo 'Hello bar'
 Hello bar
 `)
 	require.NoError(t, e.Run(context.Background(), &ast.Call{Task: "default"}))
@@ -1868,11 +1868,11 @@ func TestErrorCode(t *testing.T) {
 	}{
 		{
 			name:     "direct task",
-			task:     "direct",
+			ops:     "direct",
 			expected: 42,
 		}, {
 			name:     "indirect task",
-			task:     "indirect",
+			ops:     "indirect",
 			expected: 42,
 		},
 	}
@@ -1912,28 +1912,28 @@ func TestEvaluateSymlinksInPaths(t *testing.T) {
 	}{
 		{
 			name:     "default (1)",
-			task:     "default",
-			expected: "task: [default] echo \"some job\"\nsome job",
+			ops:     "default",
+			expected: "ops: [default] echo \"some job\"\nsome job",
 		},
 		{
 			name:     "test-sym (1)",
-			task:     "test-sym",
-			expected: "task: [test-sym] echo \"shared file source changed\" > src/shared/b",
+			ops:     "test-sym",
+			expected: "ops: [test-sym] echo \"shared file source changed\" > src/shared/b",
 		},
 		{
 			name:     "default (2)",
-			task:     "default",
-			expected: "task: [default] echo \"some job\"\nsome job",
+			ops:     "default",
+			expected: "ops: [default] echo \"some job\"\nsome job",
 		},
 		{
 			name:     "default (3)",
-			task:     "default",
-			expected: `task: Task "default" is up to date`,
+			ops:     "default",
+			expected: `ops: Task "default" is up to date`,
 		},
 		{
 			name:     "reset",
-			task:     "reset",
-			expected: "task: [reset] echo \"shared file source\" > src/shared/b\ntask: [reset] echo \"file source\" > src/a",
+			ops:     "reset",
+			expected: "ops: [reset] echo \"shared file source\" > src/shared/b\ntask: [reset] echo \"file source\" > src/a",
 		},
 	}
 	for _, test := range tests {
@@ -2027,7 +2027,7 @@ func TestPlatforms(t *testing.T) {
 	}
 	require.NoError(t, e.Setup())
 	require.NoError(t, e.Run(context.Background(), &ast.Call{Task: "build-" + runtime.GOOS}))
-	assert.Equal(t, fmt.Sprintf("task: [build-%s] echo 'Running task on %s'\nRunning task on %s\n", runtime.GOOS, runtime.GOOS, runtime.GOOS), buff.String())
+	assert.Equal(t, fmt.Sprintf("ops: [build-%s] echo 'Running task on %s'\nRunning task on %s\n", runtime.GOOS, runtime.GOOS, runtime.GOOS), buff.String())
 }
 
 func TestPOSIXShellOptsGlobalLevel(t *testing.T) {

@@ -8,8 +8,8 @@ import (
 
 	"github.com/spf13/pflag"
 
-	"github.com/go-task/task/v3/internal/experiments"
-	"github.com/go-task/task/v3/taskfile/ast"
+	"github.com/sciabarracom/task/v3/internal/experiments"
+	"github.com/sciabarracom/task/v3/taskfile/ast"
 )
 
 const usage = `Usage: task [flags...] [task...]
@@ -69,7 +69,7 @@ var (
 	Timeout     time.Duration
 )
 
-func init() {
+func FlagInit() {
 	log.SetFlags(0)
 	log.SetOutput(os.Stderr)
 	pflag.Usage = func() {
@@ -96,7 +96,7 @@ func init() {
 	pflag.BoolVar(&Summary, "summary", false, "Show summary about a task.")
 	pflag.BoolVarP(&ExitCode, "exit-code", "x", false, "Pass-through the exit code of the task command.")
 	pflag.StringVarP(&Dir, "dir", "d", "", "Sets directory of execution.")
-	pflag.StringVarP(&Entrypoint, "taskfile", "t", "", `Choose which Taskfile to run. Defaults to "Taskfile.yml".`)
+	pflag.StringVarP(&Entrypoint, "taskfile", "t", "", `Choose which Taskfile to run. Defaults to "opsfile.yml".`)
 	pflag.StringVarP(&Output.Name, "output", "o", "", "Sets output style: [interleaved|group|prefixed].")
 	pflag.StringVar(&Output.Group.Begin, "output-group-begin", "", "Message template to print before a task's grouped output.")
 	pflag.StringVar(&Output.Group.End, "output-group-end", "", "Message template to print after a task's grouped output.")
@@ -128,27 +128,27 @@ func init() {
 
 func Validate() error {
 	if Download && Offline {
-		return errors.New("task: You can't set both --download and --offline flags")
+		return errors.New("ops: You can't set both --download and --offline flags")
 	}
 
 	if Download && ClearCache {
-		return errors.New("task: You can't set both --download and --clear-cache flags")
+		return errors.New("ops: You can't set both --download and --clear-cache flags")
 	}
 
 	if Global && Dir != "" {
-		log.Fatal("task: You can't set both --global and --dir")
+		log.Fatal("ops: You can't set both --global and --dir")
 		return nil
 	}
 
 	if Output.Name != "group" {
 		if Output.Group.Begin != "" {
-			return errors.New("task: You can't set --output-group-begin without --output=group")
+			return errors.New("ops: You can't set --output-group-begin without --output=group")
 		}
 		if Output.Group.End != "" {
-			return errors.New("task: You can't set --output-group-end without --output=group")
+			return errors.New("ops: You can't set --output-group-end without --output=group")
 		}
 		if Output.Group.ErrorOnly {
-			return errors.New("task: You can't set --output-group-error-only without --output=group")
+			return errors.New("ops: You can't set --output-group-error-only without --output=group")
 		}
 	}
 
